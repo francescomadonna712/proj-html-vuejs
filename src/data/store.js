@@ -102,18 +102,12 @@ let store = reactive({
     {
       text: "LIFESTYLE",
       icon: "fa-solid fa-suitcase",
-      items: [
-        { href: "#", text: "Link 1" },
-        { href: "#", text: "Link 2" }
-      ]
+
     },
     {
       text: "STORIES",
       icon: "fa-solid fa-book-open-reader",
-      items: [
-        { href: "#", text: "Link 1" },
-        { href: "#", text: "Link 2" }
-      ]
+
     },
     {
       text: "PAGES",
@@ -129,6 +123,51 @@ let store = reactive({
   ],
   bottomLinks: [
     { href: "#", icon: "fa-solid fa-envelope", text: "CONTACT US" }
+  ],
+
+  header: {
+    rice: {
+      title: 'Hygenic Recipe To Prepare Rice',
+      time: '05:35',
+      img: 'food-3-150x150.webp',
+    },
+    meal: {
+      title: 'The Best Time To Have A Meal',
+      time: '05:32',
+      img: 'food-2.webp',
+    },
+    healthy: {
+      title: 'The Best Healty Foods',
+      time: '05:37',
+      img: 'food-150x150.webp',
+    },
+    winter: {
+      title: 'The Best Winter Outfits',
+      time: '05:29',
+      img: 'winter-150x150.webp',
+    },
+  },
+  footerData: [
+    {
+      title: "GET STARTED",
+      links: ["Resources", "Tutorials", "Examples", "Docs"]
+    },
+    {
+      title: "ABOUT",
+      links: ["Stories", "Community", "Blog", "Brand Assets"]
+    },
+    {
+      title: "FEATURES",
+      links: ["Overview", "Design", "Code", "Collaborate"]
+    },
+    {
+      title: "QUICK LINKS",
+      links: ["Stories", "Community", "Blog", "Brand Assets"]
+    },
+    {
+      title: "SUBSCRIBE TO NEWSLETTER",
+      links: []
+    }
   ],
   // ---------------> sezione dedicata ai caroselli di Arnaldo <--------------
   carousel: {

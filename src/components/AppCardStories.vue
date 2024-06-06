@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             store,
-            selectedPosts: [store.posts.visit, store.posts.trip, store.posts.music, store.posts.fashion]
+            selectedPosts: [store.posts.travel, store.posts.success, store.posts.music, store.posts.trip]
         };
     },
 
@@ -37,8 +37,6 @@ export default {
     display: flex;
     gap: 1rem;
     justify-content: space-around;
-
-
 }
 
 .card {
@@ -47,7 +45,6 @@ export default {
     overflow: hidden;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 }
 
 .card img {

@@ -1,5 +1,6 @@
 <script>
 import AppNavBar from "../components/AppNavBar.vue";
+import store from '../data/store.js';
 
 
 export default {
@@ -8,12 +9,39 @@ export default {
     },
 
     data() {
-        return {
 
+        return {
+            headerKeys: Object.keys(store.header),
+            currentIndex: 0,
+            AppNavBar,
+        };
+    },
+    computed: {
+        currentItem() {
+            return store.header[this.headerKeys[this.currentIndex]];
         }
     },
-}
-
+    methods: {
+        prevItem() {
+            this.currentIndex =
+                (this.currentIndex - 1 + this.headerKeys.length) % this.headerKeys.length;
+        },
+        nextItem() {
+            this.currentIndex = (this.currentIndex + 1) % this.headerKeys.length;
+        },
+        getImageUrl(img) {
+            return new URL(`../assets/${img}`, import.meta.url).href;
+        },
+        startAutoCycle() {
+            this.autoCycleInterval = setInterval(() => {
+                this.nextItem();
+            }, 3000);
+        },
+    },
+    mounted() {
+        this.startAutoCycle();
+    },
+};
 </script>
 
 <template>
@@ -24,14 +52,19 @@ export default {
                 <div class="news-updates">
                     <div class="up">NEWS UPDATES</div>
 
-                    <div class="time">
-                        <div>05:33</div>
-                        <span>THE</span>
+                    <div class="time" v-if="currentItem">
+                        <img class="news-img" :src="getImageUrl(currentItem.img)" :alt="currentItem.title" />
+                        <div>{{ currentItem.time }}</div>
+                        <span>{{ currentItem.title }}</span>
+
                     </div>
 
-                    <button class="left"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button class="right"><i class="fa-solid fa-chevron-right"></i></button>
-
+                    <button @click="prevItem" class="left">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button @click="nextItem" class="right">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
 
                 <div class="social-icons">
@@ -60,6 +93,7 @@ export default {
     justify-content: center;
     display: flex;
     background-color: #BF1D2E;
+    padding: 0;
 }
 
 .nav-row {
@@ -70,13 +104,11 @@ export default {
 
 .up {
     padding: 0.5rem;
-    margin-right: 1rem;
     background-color: #545454;
 }
 
 .news-updates {
     justify-content: center;
-
     color: white;
     display: flex;
     font-weight: bold;
@@ -85,9 +117,11 @@ export default {
 .time {
     display: flex;
     align-items: center;
+    width: 55rem;
 }
 
 .time span {
+    padding-left: 1rem;
     margin-right: 25rem;
 }
 
@@ -139,5 +173,10 @@ i {
 .banner .banner-img {
     max-height: 90px;
     margin-left: 20px;
+}
+
+.news-img {
+    width: 45px;
+    height: 45px;
 }
 </style>
